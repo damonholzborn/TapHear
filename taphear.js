@@ -7,11 +7,11 @@ var previousWordSpanID;
 var wordsHeard = new Array();	
 var cloudColors = ["#346593", "#64559B", "#9E4873", "#915332", "#62641A", "#26706F"];	
 
+window.onload = function() {
+	loadBang();
+}
+
 function loadBang() {
-	if (window.innerWidth > 735)
-		document.getElementById("taphearinterface").style.top = "-94px";
-	else 
-		document.getElementById("taphearinterface").style.top = "-26px";
 		
 	document.getElementById("helpbutton").addEventListener("click", function(event){
 		console.log("poopy");
@@ -22,11 +22,10 @@ function loadBang() {
 
 window.addEventListener("orientationchange", loadBang, false);
 
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-    }, false);
-}
+// playInput.addEventListener("keydown", checkInputLock);
+// playInput.addEventListener("keyup", checkLetters);
+// submitButton.addEventListener("click", submitLittleWords);
+// logo.addEventListener("click", function() { backToMenu(); })
 
 
 // ************************************ App ************************************

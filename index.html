@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	
+	<!-- <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+	<meta name="viewport" content="width=336, initial-scale=1, minimum-scale=1, maximum-scale=1"> 
+	<meta name="viewport" content="width=348, user-scalable=no"> -->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-title" content="little words">
+	<link rel="apple-touch-icon" sizes="57x57" href="icons/taphearicon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="icons/taphearicon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="icons/taphearicon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="icons/taphearicon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="icons/taphearicon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="icons/taphearicon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="icons/taphearicon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="icons/taphearicon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="icons/taphearicon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="icons/taphearicon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="icons/taphearicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="icons/taphearicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="icons/taphearicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="icons/taphearicon-144x144.png">
+	<meta name="theme-color" content="#dddddd">
+	
+	<title>Tap Hear</title>
+	
+	<script type="text/javascript" src="TapHear.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="modules/bounceinplace.css">
+
+</head>
+
+<body onload="loadBang();">
+
+
+<header>
+	<h1>tap hear</h1>
+	
+	<ul id="header_list">
+		<li><a href="javascript:auto();" id="helpbutton">auto</a></li>
+		<li><a href="javascript:autoOn = !autoOn" id="helpbutton">toggle</a></li>
+		<li><a href="javascript:hearABunch();" id="helpbutton">?</a></li>
+	</ul>
+	
+	
+	
+</header>
+
+<main>
+	<div id="taphearformarea">
+		<form id="taphearform" action="javascript:addNewWord()">
+			<input id="wordInput" autocapitalize="off" autocorrect="off" size="30">
+			<input id="wordSubmit" type="submit" value="tap">
+		</form>
+	</div>
+
+	
+	<div id="wordcloud"></div>
+
+
+</main>
+
+
+</div>
+
+
+</body>
+</html>
