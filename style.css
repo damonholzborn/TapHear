@@ -62,15 +62,13 @@ h1 {
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
+#header_list li a:hover {
     color: #111;
 }
 
 
-
-#topdiv {
-
+main {
+	padding: 18px 8px;
 }
 
 #tapform {
@@ -141,6 +139,10 @@ li a:hover {
 }
 #wordInput:-moz-placeholder { /* Firefox 18- */
   color: #ddd;
+}
+
+#wordSubmit {
+	font-size: 1em;
 }
 
 #submit_button_from_littlewords {
