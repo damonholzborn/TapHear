@@ -20,50 +20,93 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="icons/taphearicon-144x144.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="icons/taphearicon-152x152.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="icons/taphearicon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="icons/taphearicon-192x192.png">
+	<!-- <link rel="icon" type="image/png" sizes="192x192"  href="icons/taphearicon-192x192.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="icons/taphearicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="icons/taphearicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="icons/taphearicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="icons/taphearicon-16x16.png"> -->
 	<link rel="manifest" href="/manifest.json">
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="icons/taphearicon-144x144.png">
 	<meta name="theme-color" content="#dddddd">
 	
+	<link rel="icon" href="favicon.ico">
+	
 	<title>Tap Hear</title>
 	
 	<script type="text/javascript" src="TapHear.js"></script>
+	<link rel="stylesheet" type="text/css" href="modules/hamburgers.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="modules/bounceinplace.css">
+	<!-- <link rel="stylesheet" type="text/css" href="modules/bounceinplace.css"> -->
 
 </head>
 
-<body onload="loadBang();">
-
+<body>
 
 <header>
 	<h1>tap hear</h1>
 	
-	<ul id="header_list">
+	<!-- <ul id="header_list">
 		<li><a href="javascript:auto();" id="helpbutton">auto</a></li>
 		<li><a href="javascript:autoOn = !autoOn" id="helpbutton">toggle</a></li>
 		<li><a href="javascript:hearABunch();" id="helpbutton">?</a></li>
-	</ul>
+	</ul> -->
 	
-	
-	
+	<!-- <div id="hamburger">&#x2630;</div> -->
+	<button class="hamburger hamburger--spring" type="button" id="hamburger">
+	  <span class="hamburger-box">
+	    <span class="hamburger-inner"></span>
+	  </span>
+	</button>
 </header>
 
 <main>
-	<div id="taphearformarea">
-		<form id="taphearform" action="javascript:addNewWord()">
-			<!-- <input id="wordInput" placeholder="hear" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" size="30"> -->
-			<input id="wordInput" placeholder="hear" autocapitalize="off" size="30">
-			<input id="wordSubmit" type="submit" value=" tap ">
-		</form>
-	</div>
-	
-	<div id="wordcloud"></div>
+	<section id="menu">
+		<h3>How to Play Tap Hear</h3>
+		
+		<ul>
+			<li>Find a quiet place for listening.</li>
+			<li>Decide how long your listening session should be (15 minutes seems nice).</li>
+			<li>When you hear a sound, enter it in the "type here" box and tap/click the "tap here" button (or press the return key on your keyboard). This will add the word to the word cloud below.</li>
+			<li>If you hear the same/similar sound, you can enter it again in the "type here" box or simply tap the word in the word cloud. Either way, the word will get bigger to indicate you've heard it more.</li>
+			<li>Repeat until done.</li>
+		</ul>
+		
+		Click the 'X' above to close this menu when you're ready to get started.
+		
+		<h3>Background</h3>
+		
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porta eget sapien sit amet convallis. Donec aliquam tellus nec erat posuere, vitae aliquam massa ornare. Mauris tempor maximus purus ac egestas. Aliquam imperdiet, lacus sit amet porttitor mollis, massa risus molestie tortor, nec malesuada justo nunc a nisi. Mauris rhoncus, dolor ut vulputate tincidunt, purus lacus accumsan eros, non mollis odio orci ac tellus. Morbi ultrices eu nulla vitae tristique. Vivamus cursus tellus id nisl cursus, eget tincidunt urna porta. Mauris viverra, leo ut pretium elementum, metus ipsum dapibus sem, sit amet vehicula sem sapien vitae diam. Nam non turpis in ligula gravida imperdiet nec non lacus. Praesent nisi lectus, scelerisque non auctor et, convallis eget orci. Donec tristique ut mi non eleifend. Mauris malesuada porttitor erat et lobortis. Phasellus tincidunt accumsan nisl vel rutrum. Phasellus nec odio nec augue feugiat volutpat ac sit amet lacus. Mauris vitae lectus quam.</p>
 
+		<p>Quisque elit purus, scelerisque vel posuere sit amet, placerat sed libero. Suspendisse in arcu quis turpis venenatis mollis at eget ligula. Aenean iaculis condimentum mi sit amet condimentum. Maecenas interdum massa a mauris fermentum, non commodo tortor lacinia. Donec aliquam tempor risus at viverra. Vivamus hendrerit at diam vitae convallis. Pellentesque consequat blandit nibh, eu viverra ipsum maximus eget. Ut ultricies at leo ut faucibus.</p>
+
+		<p>Praesent consectetur, turpis at sodales convallis, leo tortor mollis neque, congue vestibulum urna massa quis tortor. Sed at ligula varius, semper erat nec, accumsan tortor. Nunc porta orci arcu, at laoreet urna consequat in. Maecenas vitae ipsum vitae ipsum fermentum fringilla. Nunc dapibus magna a odio finibus, vitae faucibus orci hendrerit. Vestibulum ultricies elit ipsum, ac pretium ante ultricies in. Morbi vitae orci eu risus rhoncus mollis ut in risus. Sed mollis tellus ipsum, non sagittis orci vestibulum eu. Aliquam felis leo, commodo in mauris ut, maximus blandit ipsum. Quisque lobortis nunc a dui feugiat, vel luctus ligula cursus. Suspendisse potenti. Sed volutpat rutrum lorem, vel tempus lorem suscipit non. Pellentesque auctor, nibh non consequat dignissim, ligula odio bibendum orci, quis ultricies lacus turpis ut nisl.</p>
+
+		<!-- <p>Special thanks to Miguel Frasconi, Gascia Ouzounian, John O'Brien, Ellen Waterman and Jason Freeman for helping me track down the source of the inspiration for Tap Hear and suggesting additional resources.</p> -->
+			
+		<h3>Resources</h3>
+			
+		<ul>
+			<li>elit purus</li>
+			<li>consectetur</li>
+			<li>potenti</li>
+			<li>scelerisque vel posuere</li>
+			<li>ligula</li>
+			<li>vitae convallis</li>
+		</ul>
+		
+			
+	</section>
+	<section id="play_area">
+		<div id="form_area">
+			<form id="taphear_form" action="javascript:addNewWord()">
+				<!-- <input id="wordInput" placeholder="hear" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" size="30"> -->
+				<input id="word_input" placeholder="type here" autocapitalize="off">
+				<input id="word_submit" type="submit" value=" tap here ">
+			</form>
+		</div>
+		
+		<div id="wordcloud"></div>
+	<section>
 </main>
 
 

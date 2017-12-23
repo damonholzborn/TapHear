@@ -1,23 +1,44 @@
 // ************************************ Setup ************************************
 
+var wordInput;
+var hamburger;
+var menu;
+var playArea;
+
+var menuIsActive = false;
+
 var baseFontSize = 22;
 var fontIncreaseForIncrement = 3;
 var wordNumber = 0;
 var previousWordSpanID;
 var wordsHeard = new Array();	
-var cloudColors = ["#346593", "#64559B", "#9E4873", "#915332", "#62641A", "#26706F"];	
+// var cloudColors = ["#346593", "#64559B", "#9E4873", "#915332", "#62641A", "#26706F"];	
+// var cloudColors = ["#7e7e7c", "#8e8e8c", "#9e9e9c", "#aeaeac", "#bebebc", "#cececc"];	
+var cloudColors = ["#7e7e7c", "#8e8e8c", "#9e9e9c", "#aeaeac", "#bebebc", "#cececc", "#dededc", "#eeeeec", "#fefefc" ];	
+var colorOffset = 2;
+
+
 
 window.onload = function() {
 	loadBang();
 }
 
 function loadBang() {
-		
-	document.getElementById("helpbutton").addEventListener("click", function(event){
-		console.log("poopy");
-		event.preventDefault();
-		});
+	// document.getElementById("helpbutton").addEventListener("click", function(event){
+	// 	console.log("poopy");
+	// 	event.preventDefault();
+	// 	});
+    // 
 	
+	wordInput = document.getElementById("word_input");
+	hamburger = document.getElementById("hamburger");
+	menu = document.getElementById("menu");
+	playArea = document.getElementById("play_area");
+	
+	hamburger.addEventListener('click', menuToggle, false);
+	wordInput.addEventListener('focus', wordFocus, false);
+	
+	// hearAllSix();
 }
 
 window.addEventListener("orientationchange", loadBang, false);
@@ -27,17 +48,39 @@ window.addEventListener("orientationchange", loadBang, false);
 // submitButton.addEventListener("click", submitLittleWords);
 // logo.addEventListener("click", function() { backToMenu(); })
 
+function menuToggle() {
+	if (!menuIsActive) {
+		playArea.classList.add('hide');
+		menu.classList.add('show');
+		hamburger.classList.add('is-active');
+		menuIsActive = true;
+	}
+	else {
+		playArea.classList.remove('hide');
+		menu.classList.remove('show');
+		hamburger.classList.remove('is-active');
+		menuIsActive = false;
+	}
+}
+
+function wordFocus() {
+	if (menuIsActive) {
+		menuToggle();
+	}	
+}
 
 // ************************************ App ************************************
 
 function addNewWord() {
 	var wordToAdd;
 
-	document.getElementById("wordInput").focus();
+	wordInput.focus();
 
-	wordToAdd = document.getElementById("wordInput").value.trim();
+	wordToAdd = wordInput.value.trim();
 	wordSizeString = baseFontSize + "px";
-
+	if (!wordToAdd) {
+		return
+	}
 	if (!wordsHeard[wordToAdd])
 	{			
 		if (previousWordSpanID)
@@ -51,19 +94,17 @@ function addNewWord() {
 		var oldText = document.getElementById("wordcloud").innerHTML;
 		document.getElementById("wordcloud").innerHTML = "<span id='" + wordToAddSpanID + "' class='bouncyCloud'><a href='javascript:makeBigger(\"" + wordToAddAnchorID +  "\")' style='font-size:" + wordSizeString + "; white-space:nowrap;' id='" + wordToAddAnchorID + "'>&nbsp;" + wordToAdd + "&nbsp;</a></span> " + oldText;								
 		document.getElementById(wordToAddAnchorID).style.color = getCloudColor(baseFontSize);
-		//document.getElementById(wordToAddSpanID).addEventListener("animationend", sup, false);
-// 		setTimeout(function(){
-// 			document.getElementById(wordToAddSpanID).className = "poopy";
-// 		}, 4000);
 		
-		document.getElementById("wordInput").value = "";
+		
+		wordInput.placeholder = '';
+		wordInput.value = '';
 		previousWordSpanID = wordToAddSpanID;
 		wordNumber++;
 	}
 	else
 	{
 		makeBigger(wordsHeard[wordToAdd]);
-		document.getElementById("wordInput").value = "";
+		wordInput.value = "";
 	}
 }	
 
@@ -72,9 +113,6 @@ function sup() {
 }
 
 function makeBigger(word) {
-	
-	//document.getElementById("wordInput").focus();
-
 	wordAnchor = document.getElementById(word);
 	wordParent = document.getElementById(word).parentNode;
 	previousWordSpan = document.getElementById(previousWordSpanID);
@@ -104,17 +142,17 @@ function css( element, property ) {
 function getCloudColor(size) {
 	var newColor;
 	if (size < baseFontSize + 9)
-		newColor = cloudColors[0]
+		newColor = cloudColors[0 + colorOffset];
 	else if (size <  baseFontSize + 18)
-		newColor = cloudColors[1]
+		newColor = cloudColors[1 + colorOffset];
 	else if (size <  baseFontSize + 27)
-		newColor = cloudColors[2]
+		newColor = cloudColors[2 + colorOffset];
 	else if (size <  baseFontSize + 36)
-		newColor = cloudColors[3]
+		newColor = cloudColors[3 + colorOffset];
 	else if (size <  baseFontSize + 45)
-		newColor = cloudColors[4]
+		newColor = cloudColors[4 + colorOffset];
 	else
-		newColor = cloudColors[5]
+		newColor = cloudColors[5 + colorOffset];
 		
 	return newColor;
 }
@@ -122,23 +160,55 @@ function getCloudColor(size) {
 // ************************************ Testing ************************************
 
 // 		var testWords = ["i'm", "a", "little", "teapot", "short", "and", "stout", "this", "is", "my", "handle", "and", "this", "is", "my", "spout", "hey", "diddle", "diddle", "the", "cat", "and", "the", "fiddle", "the", "cow", "jumped", "over", "the", "moon", "little", "miss", "muffet", "sat", "on", "her", "tuffet"];
-var testWords = ["i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "this", "is", "my", "handle", "and", "this", "is", "my", "spout", "hey", "diddle", "diddle", "the", "cat", "and", "the", "fiddle", "the", "cow", "jumped", "over", "the", "moon", "little", "miss", "muffet", "sat", "on", "her", "tuffet"];
+// var testWords = ["i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "i'm", "a", "little", "teapot", "short", "and", "stout", "this", "is", "my", "handle", "and", "this", "is", "my", "spout", "hey", "diddle", "diddle", "the", "cat", "and", "the", "fiddle", "the", "cow", "jumped", "over", "the", "moon", "little", "miss", "muffet", "sat", "on", "her", "tuffet"];
+var testWords = ["i'm", "a", "little", "teapot", "short", "and", "stout" ];
+var oneSix = ['one', 'two', 'three', 'four', 'five', 'six' ];
 
 function hearABunch() {
-	for (var i = 0; i < 10; i++) 
+	for (var i = 0; i < 20; i++) 
 	{
-		document.getElementById("wordInput").value = testWords[Math.floor((Math.random() * testWords.length))];
-		document.getElementById("taphearform").submit();
+		wordInput.value = testWords[Math.floor((Math.random() * testWords.length))];
+		document.getElementById("taphear_form").submit();
 	}	
 	 return false;	
 }
+
+function hearABunch() {
+	for (var i = 0; i < 20; i++) 
+	{
+		wordInput.value = testWords[Math.floor((Math.random() * testWords.length))];
+		document.getElementById("taphear_form").submit();
+	}	
+	 return false;	
+}
+
+function hearAllSix() {
+	for (var i = 0; i < oneSix.length; i++) 
+	{
+			wordInput.value = oneSix[i];
+			document.getElementById("taphear_form").submit();		
+	}	
+	for (var i = 0; i < testWords.length; i++) 
+	{
+		for (var j = i; j < i * 4; j++) 
+		{
+			wordInput.value = testWords[i];
+			document.getElementById("taphear_form").submit();		
+		}
+
+	}	
+	
+
+	 return false;	
+}
+
 
 function auto() {	
 	for (var i = 0; i < 200; i++) 
 	{
 		setTimeout(function(){
-			document.getElementById("wordInput").value = testWords[Math.floor((Math.random() * testWords.length))];
-			document.getElementById("taphearform").submit();
+			wordInput.value = testWords[Math.floor((Math.random() * testWords.length))];
+			document.getElementById("taphear_form").submit();
 		}, 500 * i);
 	}				
 }
