@@ -7,8 +7,6 @@
   --font-family: Palatino;
 }
 
-
-
 body {
 	/*background-color: #fefeff;
 	background-color: #aeaeac;
@@ -25,10 +23,30 @@ body {
 	/*font-family: Helvetica;*/
 	/*font-family: Courier, Monaco, mono;*/
 	font-weight: normal;
+	font-size: 18px;
 	line-height: 1.4em;
 	-webkit-overflow-scrolling: touch;
 	padding: 6px 8px;
 
+}
+
+main {
+	/*padding: 18px 8px;*/
+	padding-top: 12px;
+}
+
+/* ****************** Header ****************** */
+
+header {
+	/*overflow: hidden;*/
+	padding: 8px 0 14px;
+}
+
+#logo {
+	float: left;
+	height: 38px;
+	margin: -2px 2px 0 -28px;
+	/*padding-right: 4px;*/
 }
 
 h1 {
@@ -39,52 +57,9 @@ h1 {
 	font-weight: normal;
 }
 
-header {
-	/*overflow: hidden;*/
-	padding-bottom: 8px;
-}
-
-main {
-	/*padding: 18px 8px;*/
-	padding-top: 12px;
-}
-
-#menu {
-	overflow: hidden;
-	min-height: 0;
-	height: 0;
-	transition: min-height .4s 0.0s ease-in-out;
-	-webkit-overflow-scrolling: touch;
-}
-
-#menu.show {
-	overflow: scroll;
-	min-height: calc(100% - 100px);
-}
-
-#play_area {
-	overflow: visible;
-	opacity: 1;
-	height: 30px;
-	/*height: 100%;*/
-	transition: opacity 0s 0s, height 0 .4s;
-}
-
-#play_area.hide {
-	overflow: hidden;
-	padding-top: 20px;
-	/*height: 30px;*/
-	opacity: 0.2;
-	/*height: 0;*/
-	transition: opacity 1.2s 0s, height 0s .4s;
-}
-
-/* ****************** Header ****************** */
-
-
 #hamburger {
-	font-size: 1.5em;
 	float: right;
+	padding-top: 3px;
 }
 
 .hamburger {
@@ -115,7 +90,7 @@ main {
 /*.hamburger-inner {
     top: -10px; 
 }*/
-.hamburger--spring .hamburger-inner {
+/*.hamburger--spring .hamburger-inner {
     top: 5px; 
 }
 .hamburger--spring .hamburger-inner::before {
@@ -123,39 +98,29 @@ main {
 }
 .hamburger--spring .hamburger-inner::after {
     top: 19px; 
-}
-
-
-/*#header_list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-	float: right;
 }*/
 
-/*#header_list li {
-    float: left;
+/* ****************** Menu ****************** */
+
+#menu {
+	overflow: hidden;
+	min-height: 0;
+	height: 0;
+	transition: min-height .4s 0.0s ease-in-out;
+	-webkit-overflow-scrolling: touch;
 }
 
-#header_list li a {
-    display: block;
-    text-align: center;
-    padding: 8px ;
-    text-decoration: none;
+#menu.show {
+	overflow: scroll;
+	min-height: calc(100% - 76px);
+	/*min-height: 100%;*/
 }
-
-#header_list li a:hover {
-    color: #111;
-}*/
-
-/*#helpbutton {
-	position:relative;
-	margin-right:4px;
-	font-size:16px;
-}*/
 
 /* ****************** Form ****************** */
+
+form {
+	font-size: 0.9em;
+}
 
 #form_area {
 	/*text-align: right;*/
@@ -166,14 +131,12 @@ main {
 }
 
 #word_input {
-	/*width: 100%;*/
 	font-family: var(--font-family);
-
 	float: left;
 	color: #2e2e2c;
 	background-color: var(--fg-color);
 	height: 30px;
-	width: calc(100% - 6em);
+	width: calc(100% - 116px);
 	padding: 4px 2px;
 	font-size: 1em;
 	border: 0;
@@ -207,14 +170,13 @@ main {
 	background-color: var(--fg-color);
 	color: #5e5e5c;
 	border: 0;
-	border-radius: 0;
+	border-radius: 16px;
 	margin-left: 1em;
 	font-size: 1em;
-	width: 5em;
+	width: 96px;
 	height: 30px;
 	/*margin-top: -13px;*/
 	/*vertical-align: bottom;*/
-
 }
 
 #submit_button_from_littlewords {
@@ -225,24 +187,94 @@ main {
 	transition: opacity .2s ease-out .2s;
 }
 
+/* ****************** Play Area ****************** */
+
+#play_area {
+	overflow: visible;
+	opacity: 1;
+	height: 30px;
+	/*height: 100%;*/
+	transition: opacity 0s 0s, height 0 .4s;
+}
+
+#play_area.hide {
+	overflow: hidden;
+	/*padding-top: 20px;*/
+	height: 0;
+	opacity: 0.2;
+	/*height: 0;*/
+	transition: opacity 1.2s 0s, height 0s .4s;
+}
+
+/* ****************** Clear Button ****************** */
+
+#clear_area {
+    opacity: 0;
+}
+
+#clear_area.show {
+    opacity: 1;
+}
+
+#clear_button {
+    font-family: var(--font-family);
+    background-color: var(--fg-color);
+	font-size: 12px;
+	border-radius: 1em;
+    margin-top: -10px;
+	padding: 5px 16px 3px; 
+	border: 0;
+	cursor: pointer;
+	outline: none;
+    opacity: 1;
+    /* visibility: hidden; */
+    transition: opacity .5s ease-out;
+}
+
+#clear_button.hide {
+    /* visibility: visible; */
+    opacity: 0;
+}
 
 /* ****************** Cloud ****************** */
-
 
 #wordcloud {
 	width:100%;
 	text-align:center;
 	line-height:2.6em;
-	margin-top: 38px;
-	/*padding-bottom: 88px;*/
+	margin-top: 24px;
+	
+  /*-webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; */
 }
+#wordcloud::selection {
+  background: transparent; 
+}
+#wordcloud::-moz-selection {
+  background: transparent;
+}
+
 
 #wordcloud a {
 	text-decoration: none;
+    white-space: nowrap;
+	cursor: pointer;
 }
 
+#wordcloud a::selection {
+  background: transparent;
+}
+#wordcloud a::-moz-selection {
+  background: transparent;
+}
+
+
 /* span[class*='cloudWord']	 { */
-.staticCloud {
+#wordcloud span {
 	display: -moz-inline-stack;
 	display: inline-block;
 	font-weight: 300;

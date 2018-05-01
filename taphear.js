@@ -4,49 +4,73 @@ var wordInput;
 var hamburger;
 var menu;
 var playArea;
+var inputForm;
+var clearArea;
+var clearButton;
+var wordCloudDiv;
 
 var menuIsActive = false;
 
 var baseFontSize = 22;
 var fontIncreaseForIncrement = 3;
+
 var wordNumber = 0;
 var previousWordSpanID;
-var wordsHeard = new Array();	
-// var cloudColors = ["#346593", "#64559B", "#9E4873", "#915332", "#62641A", "#26706F"];	
-// var cloudColors = ["#7e7e7c", "#8e8e8c", "#9e9e9c", "#aeaeac", "#bebebc", "#cececc"];	
+var savedWordsHeard = JSON.parse(localStorage.getItem('wordsHeard'));
+var savedWordsHeardSizes = JSON.parse(localStorage.getItem('wordsHeardSizes'));
+var wordsHeard =  savedWordsHeard ? savedWordsHeard : [];
+var wordsHeardSizes = savedWordsHeardSizes ? savedWordsHeardSizes : [];
+var wordCloud = [];
 var cloudColors = ["#7e7e7c", "#8e8e8c", "#9e9e9c", "#aeaeac", "#bebebc", "#cececc", "#dededc", "#eeeeec", "#fefefc" ];	
 var colorOffset = 2;
 
+var hasClosedMenu = parseInt(localStorage.getItem('hasClosedMenu'));
 
+
+var touchOrClick = 'ontouchstart' in document.documentElement ? 'touchstart' : 'mousedown';
 
 window.onload = function() {
-	loadBang();
-}
-
-function loadBang() {
-	// document.getElementById("helpbutton").addEventListener("click", function(event){
-	// 	console.log("poopy");
-	// 	event.preventDefault();
-	// 	});
-    // 
-	
 	wordInput = document.getElementById("word_input");
 	hamburger = document.getElementById("hamburger");
 	menu = document.getElementById("menu");
 	playArea = document.getElementById("play_area");
+	inputForm = document.getElementById("input_form");
+	clearArea = document.getElementById("clear_area");
+	clearButton = document.getElementById("clear_button");
+	wordCloudDiv = document.getElementById("wordcloud");
 	
-	hamburger.addEventListener('click', menuToggle, false);
-	wordInput.addEventListener('focus', wordFocus, false);
+	hamburger.addEventListener(touchOrClick, menuToggle, false);
+	inputForm.addEventListener('submit', function(event) {
+		addNewWord(wordInput.value.trim(), baseFontSize, true);
+		wordInput.value = '';
+		wordInput.placeholder = '';
+		wordInput.focus();
+		event.preventDefault();
+	});
+	
+	clearButton.addEventListener('click', function(event) {
+		clearWordCloud();
+		wordInput.focus();
+		wordInput.placeholder = 'type hear';
+	});
+	
+	if (!hasClosedMenu) {
+		setTimeout(function() {
+			menuToggle();
+		}, 750);
+		
+	}
+	
+	if (wordsHeard.length && wordsHeardSizes.length) {
+		for (var i = 0; i < wordsHeard.length; i++) {
+			addNewWord(wordsHeard[i], wordsHeardSizes[i], true);
+		}
+	}
 	
 	// hearAllSix();
 }
 
-window.addEventListener("orientationchange", loadBang, false);
-
-// playInput.addEventListener("keydown", checkInputLock);
-// playInput.addEventListener("keyup", checkLetters);
-// submitButton.addEventListener("click", submitLittleWords);
-// logo.addEventListener("click", function() { backToMenu(); })
+// ************************************ App ************************************
 
 function menuToggle() {
 	if (!menuIsActive) {
@@ -60,61 +84,65 @@ function menuToggle() {
 		menu.classList.remove('show');
 		hamburger.classList.remove('is-active');
 		menuIsActive = false;
+		localStorage.setItem('hasClosedMenu', 1);
 	}
 }
 
-function wordFocus() {
-	if (menuIsActive) {
-		menuToggle();
-	}	
-}
+function addNewWord(word, fontsize, shouldsave) {
+	var wordToAdd = word;
 
-// ************************************ App ************************************
-
-function addNewWord() {
-	var wordToAdd;
-
-	wordInput.focus();
-
-	wordToAdd = wordInput.value.trim();
-	wordSizeString = baseFontSize + "px";
 	if (!wordToAdd) {
 		return
 	}
-	if (!wordsHeard[wordToAdd])
+	if (!wordCloud[wordToAdd])
 	{			
 		if (previousWordSpanID)
 		{
 			document.getElementById(previousWordSpanID).className = "staticCloud";
 		}
-		var wordToAddSpanID = "cloudWord" + wordNumber;
+	
+		wordsHeard[wordNumber] = wordToAdd;
+		wordsHeardSizes[wordNumber] = fontsize;
+		
+		var wordToAddSpanID = "cloudWord" + wordToAdd;
 		var wordToAddAnchorID = wordToAddSpanID + "Anchor"
-		wordsHeard[wordToAdd] = wordToAddAnchorID;
-			
-		var oldText = document.getElementById("wordcloud").innerHTML;
-		document.getElementById("wordcloud").innerHTML = "<span id='" + wordToAddSpanID + "' class='bouncyCloud'><a href='javascript:makeBigger(\"" + wordToAddAnchorID +  "\")' style='font-size:" + wordSizeString + "; white-space:nowrap;' id='" + wordToAddAnchorID + "'>&nbsp;" + wordToAdd + "&nbsp;</a></span> " + oldText;								
-		document.getElementById(wordToAddAnchorID).style.color = getCloudColor(baseFontSize);
+		wordCloud[wordToAdd] = wordToAddAnchorID;
 		
+		var newHTML =  "<span id='" + wordToAddSpanID + "' class='bouncyCloud'><a id='" + wordToAddAnchorID + "'>&nbsp;" + wordToAdd + "&nbsp;</a></span> ";
+		wordCloudDiv.insertAdjacentHTML('afterbegin', newHTML);
 		
-		wordInput.placeholder = '';
-		wordInput.value = '';
+		var wordAnchor = document.getElementById(wordToAddAnchorID);
+		wordAnchor.style.color = getCloudColor(colorOffset);
+		var fontSize = fontsize ? fontsize : baseFontSize;
+		wordAnchor.style.fontSize = fontSize + 'px';
+		wordAnchor.style.color = getCloudColor(fontsize);
+		wordAnchor.addEventListener(touchOrClick, function() {
+			makeBigger(wordToAdd);
+			event.preventDefault();
+		});
+		
 		previousWordSpanID = wordToAddSpanID;
 		wordNumber++;
 	}
 	else
 	{
-		makeBigger(wordsHeard[wordToAdd]);
-		wordInput.value = "";
+		makeBigger(wordToAdd);
 	}
+	if (shouldsave) {
+		localStorage.setItem('wordsHeard', JSON.stringify(wordsHeard));
+		localStorage.setItem('wordsHeardSizes', JSON.stringify(wordsHeardSizes));
+	}
+	clearArea.classList.add('show');
+	clearButton.classList.remove('hide');
 }	
 
-function sup() {
-	console.log("sup?");
-}
+function makeBigger(word, size) {
+	var wordIndex = wordsHeard.indexOf(word);
+	wordsHeardSizes[wordIndex] = wordsHeardSizes[wordIndex] + fontIncreaseForIncrement;
 
-function makeBigger(word) {
-	wordAnchor = document.getElementById(word);
-	wordParent = document.getElementById(word).parentNode;
+	var wordElement = wordCloud[wordCloud + word];
+	wordAnchor = document.getElementById(wordElement);
+	wordParent = document.getElementById(wordElement).parentNode;
 	previousWordSpan = document.getElementById(previousWordSpanID);
 
 	if (previousWordSpanID || previousWordSpanID != wordParent.id)
@@ -122,21 +150,37 @@ function makeBigger(word) {
 		previousWordSpan.className = "staticCloud";
 	}
 	
-	console.log(css(previousWordSpan, 'font-weight'), "|--|", css(wordAnchor, 'font-weight'));
-	wordParent.className = "bouncyCloud";
+	setTimeout(function() {
+		wordParent.classList.add('bouncyCloud');		
+	}, 5);
 	
-	wordFontSize = parseInt(wordAnchor.style.fontSize) + fontIncreaseForIncrement;
+	if (size) {
+		wordFontSize = size;		
+	}
+	else {
+		wordFontSize = parseInt(wordAnchor.style.fontSize) + fontIncreaseForIncrement;		
+	}
 	wordAnchor.style.fontSize = wordFontSize + "px";
 	wordAnchor.style.color = getCloudColor(wordFontSize);
 
 	previousWordSpanID = wordParent.id;
 	
+	localStorage.setItem('wordsHeardSizes', JSON.stringify(wordsHeardSizes));		
+	
 	return false;
 }
 
-function css( element, property ) {
-    return window.getComputedStyle( element, null ).getPropertyValue( property );
+function clearWordCloud() {
+	wordCloudDiv.innerHTML = '';
+	wordsHeard = [];
+	wordsHeardSizes = [];
+	previousWordSpanID = undefined;
+	localStorage.removeItem('wordsHeard');
+	localStorage.removeItem('wordsHeardSizes');
+	clearButton.classList.add('hide');
+
 }
+
 // ************************************ Utility ************************************
 
 function getCloudColor(size) {
@@ -155,6 +199,10 @@ function getCloudColor(size) {
 		newColor = cloudColors[5 + colorOffset];
 		
 	return newColor;
+}
+
+function getCSSProperty(element, property) {
+    return window.getComputedStyle(element, null).getPropertyValue(property);
 }
 
 // ************************************ Testing ************************************
@@ -202,7 +250,6 @@ function hearAllSix() {
 	 return false;	
 }
 
-
 function auto() {	
 	for (var i = 0; i < 200; i++) 
 	{
@@ -213,7 +260,4 @@ function auto() {
 	}				
 }
 
-function bounceMe() {
-
-}
 

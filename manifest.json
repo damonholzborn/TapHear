@@ -1,6 +1,7 @@
 {
     "short_name": "tap hear",
     "name": "tap hear",
+    "description": "listening exercise",
     "icons": [
         {
             "src": "icons/icon-36x36.png",
@@ -33,6 +34,9 @@
             "type": "image/png"
         }
     ],
+    "background_color": "#2e2e2c",
+    "theme_color": "#2e2e2c",
     "start_url": "index.html",
-    "display": "standalone"
+    "display": "standalone",
+    "orientation": "portrait"
 }

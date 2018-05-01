@@ -1,4 +1,5 @@
-<html lang="en">
+<!-- <html lang="en"> -->
+<html lang="en" manifest="manifest.appcache">
 <head>
 	<meta charset="utf-8" />
 	
@@ -11,47 +12,39 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="apple-mobile-web-app-title" content="tap hear">
-	<link rel="apple-touch-icon" sizes="57x57" href="icons/taphearicon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="icons/taphearicon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="icons/taphearicon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="icons/taphearicon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="icons/taphearicon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="icons/taphearicon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="icons/taphearicon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="icons/taphearicon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="icons/taphearicon-180x180.png">
-	<!-- <link rel="icon" type="image/png" sizes="192x192"  href="icons/taphearicon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="icons/taphearicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="icons/taphearicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="icons/taphearicon-16x16.png"> -->
+	<link rel="apple-touch-icon" sizes="57x57" href="images/taphearicon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/taphearicon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/taphearicon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/taphearicon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/taphearicon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/taphearicon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/taphearicon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/taphearicon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/taphearicon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="images/taphearicon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/taphearicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/taphearicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/taphearicon-16x16.png">
 	<link rel="manifest" href="/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="icons/taphearicon-144x144.png">
-	<meta name="theme-color" content="#dddddd">
+	<meta name="theme-color" content="#2e2e2c">
 	
 	<link rel="icon" href="favicon.ico">
 	
 	<title>Tap Hear</title>
 	
-	<script type="text/javascript" src="TapHear.js"></script>
+	<script type="text/javascript" src="TapHear.js?v4"></script>
 	<link rel="stylesheet" type="text/css" href="modules/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<!-- <link rel="stylesheet" type="text/css" href="modules/bounceinplace.css"> -->
+	<link rel="stylesheet" type="text/css" href="style.css?v4">
 
 </head>
 
 <body>
 
 <header>
+	<img src="taphear_logo_long.png" id="logo">
+	
 	<h1>tap hear</h1>
 	
-	<!-- <ul id="header_list">
-		<li><a href="javascript:auto();" id="helpbutton">auto</a></li>
-		<li><a href="javascript:autoOn = !autoOn" id="helpbutton">toggle</a></li>
-		<li><a href="javascript:hearABunch();" id="helpbutton">?</a></li>
-	</ul> -->
-	
-	<!-- <div id="hamburger">&#x2630;</div> -->
 	<button class="hamburger hamburger--spring" type="button" id="hamburger">
 	  <span class="hamburger-box">
 	    <span class="hamburger-inner"></span>
@@ -60,18 +53,19 @@
 </header>
 
 <main>
+	<!-- // ************************************ Menu ************************************ -->
+
 	<section id="menu">
-		<h3>How to Play Tap Hear</h3>
+		<h3>How to Tap Hear</h3>
 		
+		<em>Click the 'X' above to close this menu when you're ready to get started.</em>
+
 		<ul>
 			<li>Find a quiet place for listening.</li>
-			<li>Decide how long your listening session should be (15 minutes seems nice).</li>
-			<li>When you hear a sound, enter it in the "type here" box and tap/click the "tap here" button (or press the return key on your keyboard). This will add the word to the word cloud below.</li>
-			<li>If you hear the same/similar sound, you can enter it again in the "type here" box or simply tap the word in the word cloud. Either way, the word will get bigger to indicate you've heard it more.</li>
+			<li>Enter sounds you hear in the "type here" box and tap the "tap here" button (or press return) to add the sound to the word cloud.</li>
+			<li>If you hear the same sound, you can enter it again in the "type here" box or simply tap the word in the word cloud. The word will get bigger to indicate you've heard it more.</li>
 			<li>Repeat until done.</li>
 		</ul>
-		
-		Click the 'X' above to close this menu when you're ready to get started.
 		
 		<h3>Background</h3>
 		
@@ -93,20 +87,22 @@
 			<li>ligula</li>
 			<li>vitae convallis</li>
 		</ul>
-		
-			
 	</section>
+
+	<!-- // ************************************ Play Area ************************************ -->
+
 	<section id="play_area">
 		<div id="form_area">
-			<form id="taphear_form" action="javascript:addNewWord()">
-				<!-- <input id="wordInput" placeholder="hear" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" size="30"> -->
+			<form id="input_form">
 				<input id="word_input" placeholder="type here" autocapitalize="off">
 				<input id="word_submit" type="submit" value=" tap here ">
 			</form>
 		</div>
-		
+		<div id="clear_area" class="hide">
+			<button id="clear_button" class="hide">clear all</button>
+		</div>
 		<div id="wordcloud"></div>
-	<section>
+	</section>
 </main>
 
 
