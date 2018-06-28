@@ -57,6 +57,13 @@ h1 {
 	font-weight: normal;
 }
 
+h3 {
+	margin-top: 38px;
+}
+
+a {
+	color: darkseagreen;
+}
 #hamburger {
 	float: right;
 	padding-top: 3px;
@@ -114,6 +121,14 @@ h1 {
 	overflow: scroll;
 	min-height: calc(100% - 76px);
 	/*min-height: 100%;*/
+}
+
+.footnote, footer {
+	font-size: 0.85em;
+}
+
+.footnote a {
+	color: var(--fg-color);
 }
 
 /* ****************** Form ****************** */
